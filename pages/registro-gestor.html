@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNK – Registrarme como Gestor Inmobiliario Free</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><span class="logo-p">PNK</span><span class="logo-sub">Inmobiliaria</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="propiedades.html">Propiedades</a></li>
+      <li><a href="login.html">Ingresar</a></li>
+      <li><a href="registro-propietario.html" class="btn-nav">Soy Propietario</a></li>
+      <li><a href="registro-gestor.html" class="btn-nav btn-nav-alt active">Soy Gestor</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Inicio</a>
+    <a href="propiedades.html">Propiedades</a>
+    <a href="login.html">Ingresar</a>
+    <a href="registro-propietario.html">Registrarme como Propietario</a>
+    <a href="registro-gestor.html">Registrarme como Gestor</a>
+  </div>
+</nav>
+
+<div class="page-form" style="background: var(--dark);">
+  <div class="form-wrap" style="max-width:700px;">
+    <span class="sec-tag" style="background:rgba(184,150,62,.15); color:var(--gold); margin-bottom:1rem; display:inline-block;">Gestor Inmobiliario Free</span>
+    <h2>Quiero ganar mi <em>PENKA_ID</em></h2>
+    <p class="form-desc">Postula como Gestor Inmobiliario Free. Una vez aprobado, podrás ofrecer cualquier propiedad de la plataforma y comisionar al cerrar un negocio.</p>
+
+    <!-- Steps indicator -->
+    <div style="display:flex; gap:.5rem; margin-bottom:2rem; background:var(--cream-dark); border-radius:8px; padding:.5rem;">
+      <div style="flex:1; padding:.5rem; background:var(--terracotta); border-radius:6px; text-align:center; font-size:.78rem; font-weight:700; color:white;">1. Registro</div>
+      <div style="flex:1; padding:.5rem; text-align:center; font-size:.78rem; color:var(--dark-soft);">2. Captación</div>
+      <div style="flex:1; padding:.5rem; text-align:center; font-size:.78rem; color:var(--dark-soft);">3. Obtén PENKA_ID</div>
+    </div>
+
+    <div class="alert-info" style="background:rgba(184,150,62,.10); border-color:rgba(184,150,62,.3); color:#7A5F22;">
+      💰 Al ser aprobado recibirás tu <strong>PENKA_ID</strong> que te habilitará para gestionar y ofrecer todas las propiedades de la plataforma.
+    </div>
+
+    <div class="form-grid">
+      <h3 class="form-section-title">Datos Personales</h3>
+
+      <div class="field">
+        <label>RUT *</label>
+        <input type="text" placeholder="12.345.678-9" required />
+      </div>
+      <div class="field">
+        <label>Nombre Completo *</label>
+        <input type="text" placeholder="María López Díaz" required />
+      </div>
+      <div class="field">
+        <label>Fecha de Nacimiento *</label>
+        <input type="date" required />
+      </div>
+      <div class="field">
+        <label>Sexo *</label>
+        <select required>
+          <option value="">Seleccionar</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Prefiero no indicar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Correo Electrónico *</label>
+        <input type="email" placeholder="correo@ejemplo.cl" required />
+      </div>
+      <div class="field">
+        <label>Teléfono Móvil *</label>
+        <input type="tel" placeholder="+56 9 1234 5678" required />
+      </div>
+
+      <h3 class="form-section-title">Documentos Requeridos</h3>
+
+      <div class="field full">
+        <label>Certificado de Antecedentes *</label>
+        <input type="file" accept=".pdf,.jpg,.png" />
+        <span class="file-hint">📎 Adjunta tu Certificado de Antecedentes vigente (PDF, JPG o PNG). Máx. 5 MB.</span>
+      </div>
+
+      <h3 class="form-section-title">Captación de Propiedad (Paso 2)</h3>
+
+      <div class="field full">
+        <label>¿Conoces a alguien que quiera vender su propiedad?</label>
+        <p style="font-size:.82rem; color:var(--dark-soft); margin-bottom:.5rem;">Para activar tu PENKA_ID debes captar al menos una propiedad para la comunidad PNK.</p>
+        <select>
+          <option>Sí, tengo una propiedad para captar</option>
+          <option>No, lo haré después de que me activen</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Nombre del Propietario</label>
+        <input type="text" placeholder="Nombre de quien quiere vender" />
+      </div>
+      <div class="field">
+        <label>Teléfono de Contacto</label>
+        <input type="tel" placeholder="+56 9 ..." />
+      </div>
+      <div class="field full">
+        <label>Dirección / Referencia del Inmueble</label>
+        <input type="text" placeholder="Ej: Av. Francisco de Aguirre 123, La Serena" />
+      </div>
+
+      <h3 class="form-section-title">Acceso a la Plataforma</h3>
+
+      <div class="field">
+        <label>Contraseña *</label>
+        <input type="password" placeholder="Mínimo 8 caracteres" required />
+      </div>
+      <div class="field">
+        <label>Confirmar Contraseña *</label>
+        <input type="password" placeholder="Repite la contraseña" required />
+      </div>
+
+      <div class="field full">
+        <label style="text-transform:none; font-size:.88rem;">
+          <input type="checkbox" style="accent-color:var(--terracotta); width:16px; height:16px; margin-right:.4rem;" required />
+          Acepto los <a href="#" style="color:var(--terracotta);">Términos y Condiciones</a> y el <a href="#" style="color:var(--terracotta);">Reglamento de Comisiones</a> de PNK Inmobiliaria.
+        </label>
+      </div>
+    </div>
+
+    <div class="form-note" style="background:rgba(184,150,62,.08); border-color:rgba(184,150,62,.25); color:#7A5F22;">
+      🏆 Al ser aprobado recibirás tu <strong>PENKA_ID</strong> exclusivo por correo electrónico y podrás comenzar a generar ingresos adicionales de inmediato.
+    </div>
+
+    <button type="submit" class="btn-submit" onclick="submitGestor(event)" style="background:var(--dark);">Postular como Gestor Inmobiliario Free</button>
+
+    <p class="form-footer">¿Ya tienes cuenta? <a href="login.html">Ingresar aquí</a> &nbsp;·&nbsp; ¿Eres Propietario? <a href="registro-propietario.html">Regístrate aquí</a></p>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal" style="text-align:center; max-width:440px;">
+    <div style="font-size:3rem; margin-bottom:1rem;">🎉</div>
+    <h3 style="font-size:1.8rem; margin-bottom:.5rem;">¡Postulación enviada!</h3>
+    <p style="color:var(--dark-soft); margin-bottom:.5rem;">Revisaremos tus antecedentes y te contactaremos pronto.</p>
+    <p style="color:var(--gold); font-weight:700; font-size:1.1rem; margin-bottom:1.5rem;">Tu PENKA_ID está en camino 🔑</p>
+    <a href="../index.html" class="btn-submit" style="display:inline-block; width:auto; padding:.75rem 2rem;">Volver al Inicio</a>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+function submitGestor(e) {
+  e.preventDefault();
+  document.getElementById('successModal').classList.add('open');
+}
+</script>
+</body>
+</html>

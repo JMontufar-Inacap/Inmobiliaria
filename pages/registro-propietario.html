@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNK – Registrarme como Propietario</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><span class="logo-p">PNK</span><span class="logo-sub">Inmobiliaria</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="propiedades.html">Propiedades</a></li>
+      <li><a href="login.html">Ingresar</a></li>
+      <li><a href="registro-propietario.html" class="btn-nav active">Soy Propietario</a></li>
+      <li><a href="registro-gestor.html" class="btn-nav btn-nav-alt">Soy Gestor</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Inicio</a>
+    <a href="propiedades.html">Propiedades</a>
+    <a href="login.html">Ingresar</a>
+    <a href="registro-propietario.html">Registrarme como Propietario</a>
+    <a href="registro-gestor.html">Registrarme como Gestor</a>
+  </div>
+</nav>
+
+<div class="page-form">
+  <div class="form-wrap">
+    <span class="sec-tag" style="margin-bottom:1rem; display:inline-block;">Propietario</span>
+    <h2>Registrarme como <em>Propietario</em></h2>
+    <p class="form-desc">Publica tu inmueble en la plataforma PNK. Tu cuenta quedará en revisión hasta que el administrador la active.</p>
+
+    <div class="alert-info">📋 Una vez enviado tu registro, recibirás un correo de confirmación cuando el Administrador active tu cuenta.</div>
+
+    <div class="form-grid">
+      <h3 class="form-section-title">Datos Personales</h3>
+
+      <div class="field">
+        <label>RUT *</label>
+        <input type="text" placeholder="12.345.678-9" required />
+      </div>
+      <div class="field">
+        <label>Nombre Completo *</label>
+        <input type="text" placeholder="Juan Pérez González" required />
+      </div>
+      <div class="field">
+        <label>Fecha de Nacimiento *</label>
+        <input type="date" required />
+      </div>
+      <div class="field">
+        <label>Sexo *</label>
+        <select required>
+          <option value="">Seleccionar</option>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Prefiero no indicar</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Correo Electrónico *</label>
+        <input type="email" placeholder="correo@ejemplo.cl" required />
+      </div>
+      <div class="field">
+        <label>Teléfono Móvil *</label>
+        <input type="tel" placeholder="+56 9 1234 5678" required />
+      </div>
+      <div class="field full">
+        <label>N° Propiedad – Registro de Bienes Raíces *</label>
+        <input type="text" placeholder="Ej: BR-2024-00123456" required />
+        <span class="file-hint">Número de inscripción en el Conservador de Bienes Raíces.</span>
+      </div>
+
+      <h3 class="form-section-title">Acceso a la Plataforma</h3>
+
+      <div class="field">
+        <label>Contraseña *</label>
+        <input type="password" placeholder="Mínimo 8 caracteres" required />
+      </div>
+      <div class="field">
+        <label>Confirmar Contraseña *</label>
+        <input type="password" placeholder="Repite la contraseña" required />
+      </div>
+
+      <div class="field full">
+        <label style="text-transform:none; font-size:.88rem;">
+          <input type="checkbox" style="accent-color:var(--terracotta); width:16px; height:16px; margin-right:.4rem;" required />
+          Acepto los <a href="#" style="color:var(--terracotta);">Términos y Condiciones</a> de la plataforma PNK Inmobiliaria.
+        </label>
+      </div>
+    </div>
+
+    <div class="form-note">⏳ Tu cuenta quedará en estado <strong>Pendiente</strong> hasta que el Administrador verifique tus antecedentes y active el acceso.</div>
+
+    <button type="submit" class="btn-submit" onclick="submitRegister(event)">Enviar Solicitud de Registro</button>
+
+    <p class="form-footer">¿Ya tienes cuenta? <a href="login.html">Ingresar aquí</a> &nbsp;·&nbsp; ¿Quieres ser Gestor? <a href="registro-gestor.html">Regístrate aquí</a></p>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal-overlay" id="successModal">
+  <div class="modal" style="text-align:center; max-width:440px;">
+    <div style="font-size:3rem; margin-bottom:1rem;">✅</div>
+    <h3 style="font-size:1.8rem; margin-bottom:.5rem;">¡Solicitud enviada!</h3>
+    <p style="color:var(--dark-soft); margin-bottom:1.5rem;">Tu registro está en revisión. Recibirás un correo cuando el Administrador active tu cuenta.</p>
+    <a href="../index.html" class="btn-submit" style="display:inline-block; width:auto; padding:.75rem 2rem;">Volver al Inicio</a>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+function submitRegister(e) {
+  e.preventDefault();
+  document.getElementById('successModal').classList.add('open');
+}
+</script>
+</body>
+</html>

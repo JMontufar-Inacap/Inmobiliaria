@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNK – Ingresar</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<div class="login-page">
+
+  <!-- Visual panel -->
+  <div class="login-visual">
+    <a href="../index.html" class="login-brand"><em>PNK</em> Inmobiliaria</a>
+    <div class="login-visual-content">
+      <h2>La plataforma inmobiliaria de la <em>Región de Coquimbo</em></h2>
+      <p>Conectamos propietarios, compradores y gestores freelance para hacer negocios mejores.</p>
+      <div style="display:flex; gap:1rem; margin-top:2rem; flex-wrap:wrap;">
+        <div style="background:rgba(255,255,255,.08); border-radius:10px; padding:1rem 1.5rem;">
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:white; font-weight:700;">+340</p>
+          <p style="color:rgba(255,255,255,.5); font-size:.8rem;">Propiedades activas</p>
+        </div>
+        <div style="background:rgba(255,255,255,.08); border-radius:10px; padding:1rem 1.5rem;">
+          <p style="font-family:'Cormorant Garamond',serif; font-size:1.8rem; color:var(--gold-light); font-weight:700;">+120</p>
+          <p style="color:rgba(255,255,255,.5); font-size:.8rem;">Gestores activos</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Form panel -->
+  <div class="login-form-panel">
+
+    <!-- LOGIN FORM -->
+    <div class="login-box" id="loginView">
+      <h2>Bienvenido/a</h2>
+      <p class="form-desc">Ingresa a tu cuenta PNK Inmobiliaria</p>
+
+      <p style="font-size:.82rem; font-weight:600; color:var(--dark-soft); text-transform:uppercase; letter-spacing:.04em; margin-bottom:.75rem;">Tipo de cuenta</p>
+      <div class="login-options">
+        <div class="login-opt selected" onclick="selectRole(this, 'propietario')">
+          <span class="login-opt-icon">🏠</span>
+          <div>
+            <p class="login-opt-title">Propietario</p>
+            <p class="login-opt-label">Gestiona tus inmuebles publicados</p>
+          </div>
+        </div>
+        <div class="login-opt" onclick="selectRole(this, 'gestor')">
+          <span class="login-opt-icon">💼</span>
+          <div>
+            <p class="login-opt-title">Gestor Inmobiliario Free</p>
+            <p class="login-opt-label">Ofrece propiedades y comisiona</p>
+          </div>
+        </div>
+        <div class="login-opt" onclick="selectRole(this, 'admin')">
+          <span class="login-opt-icon">⚙️</span>
+          <div>
+            <p class="login-opt-title">Administrador</p>
+            <p class="login-opt-label">Panel de administración PNK</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-grid" style="margin-top:1.5rem;">
+        <div class="field full">
+          <label>Correo Electrónico</label>
+          <input type="email" placeholder="correo@ejemplo.cl" />
+        </div>
+        <div class="field full">
+          <label>Contraseña</label>
+          <input type="password" placeholder="••••••••" />
+        </div>
+      </div>
+
+      <a href="#" class="recover-link" onclick="showRecover(event)">¿Olvidé mi contraseña?</a>
+
+      <button class="btn-submit" onclick="doLogin(event)">Ingresar</button>
+
+      <p class="form-footer">
+        ¿No tienes cuenta?
+        <a href="registro-propietario.html">Soy Propietario</a> ·
+        <a href="registro-gestor.html">Soy Gestor</a>
+      </p>
+    </div>
+
+    <!-- RECOVER FORM -->
+    <div class="login-box" id="recoverView" style="display:none;">
+      <a href="#" onclick="showLogin(event)" style="color:var(--terracotta); font-size:.88rem; font-weight:600; display:inline-block; margin-bottom:1.5rem;">← Volver al ingreso</a>
+      <h2>Recuperar contraseña</h2>
+      <p class="form-desc">Ingresa tu correo y te enviaremos un enlace para restablecer tu contraseña.</p>
+
+      <div class="form-grid">
+        <div class="field full">
+          <label>Correo Electrónico registrado</label>
+          <input type="email" placeholder="correo@ejemplo.cl" />
+        </div>
+      </div>
+
+      <button class="btn-submit" style="margin-top:1.5rem;" onclick="sendRecover(event)">Enviar enlace de recuperación</button>
+
+      <p class="form-footer">¿Recordaste la contraseña? <a href="#" onclick="showLogin(event)">Ingresar</a></p>
+    </div>
+
+    <!-- RECOVER SUCCESS -->
+    <div class="login-box" id="recoverSuccessView" style="display:none; text-align:center;">
+      <div style="font-size:3rem; margin-bottom:1rem;">📧</div>
+      <h2>¡Correo enviado!</h2>
+      <p class="form-desc" style="margin-bottom:2rem;">Si tu correo está registrado, recibirás un enlace para restablecer tu contraseña en los próximos minutos.</p>
+      <a href="#" class="btn-submit" style="display:inline-block; width:auto; padding:.75rem 2rem;" onclick="showLogin(event)">Volver al ingreso</a>
+    </div>
+  </div>
+</div>
+
+<script src="../js/main.js"></script>
+<script>
+function selectRole(el, role) {
+  document.querySelectorAll('.login-opt').forEach(o => o.classList.remove('selected'));
+  el.classList.add('selected');
+}
+function showRecover(e) {
+  e.preventDefault();
+  document.getElementById('loginView').style.display = 'none';
+  document.getElementById('recoverView').style.display = 'block';
+  document.getElementById('recoverSuccessView').style.display = 'none';
+}
+function showLogin(e) {
+  e.preventDefault();
+  document.getElementById('loginView').style.display = 'block';
+  document.getElementById('recoverView').style.display = 'none';
+  document.getElementById('recoverSuccessView').style.display = 'none';
+}
+function sendRecover(e) {
+  e.preventDefault();
+  document.getElementById('recoverView').style.display = 'none';
+  document.getElementById('recoverSuccessView').style.display = 'block';
+}
+function doLogin(e) {
+  e.preventDefault();
+  window.location.href = 'dashboard.html';
+}
+</script>
+</body>
+</html>

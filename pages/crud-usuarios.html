@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNK – Gestión de Usuarios</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><span class="logo-p">PNK</span><span class="logo-sub">Inmobiliaria</span></a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html">Dashboard</a></li>
+      <li><a href="crud-usuarios.html" class="active">Usuarios</a></li>
+      <li><a href="crud-propiedades.html">Propiedades</a></li>
+      <li><a href="../index.html">Ver Sitio</a></li>
+      <li><a href="login.html" class="btn-nav btn-nav-alt">Cerrar sesión</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="dash-layout">
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-header">
+      <p class="dash-user-name">Admin Principal</p>
+      <span class="dash-user-role">Administrador</span>
+    </div>
+    <nav class="dash-nav">
+      <span class="dash-nav-section">Principal</span>
+      <a href="dashboard.html"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="propiedades.html"><span class="nav-icon">🏘</span> Ver Propiedades</a>
+      <span class="dash-nav-section">Gestión</span>
+      <a href="crud-usuarios.html" class="active"><span class="nav-icon">👥</span> Usuarios</a>
+      <a href="crud-propiedades.html"><span class="nav-icon">🏠</span> Propiedades</a>
+    </nav>
+    <div class="dash-logout"><a href="login.html">🚪 Cerrar sesión</a></div>
+  </aside>
+
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <h2>Gestión de Usuarios</h2>
+        <p style="color:var(--dark-soft); font-size:.88rem;">Administrar Propietarios, Gestores y Administradores</p>
+      </div>
+      <button class="btn-action" onclick="openModal('modalNuevoUsuario')">+ Nuevo Usuario</button>
+    </div>
+
+    <!-- Filtros -->
+    <div class="filter-bar">
+      <div style="display:flex; flex-direction:column; gap:.3rem;">
+        <label>Tipo de usuario</label>
+        <select onchange="filtrarTabla()">
+          <option value="">Todos</option>
+          <option value="Propietario">Propietario</option>
+          <option value="Gestor Free">Gestor Free</option>
+          <option value="Administrador">Administrador</option>
+        </select>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:.3rem;">
+        <label>Estado</label>
+        <select onchange="filtrarTabla()">
+          <option value="">Todos</option>
+          <option value="Activo">Activo</option>
+          <option value="Pendiente">Pendiente</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+      </div>
+      <div style="display:flex; flex-direction:column; gap:.3rem;">
+        <label>Buscar</label>
+        <input type="text" placeholder="Nombre o correo..." style="min-width:200px;" />
+      </div>
+      <button class="btn-action secondary" style="align-self:flex-end;">Buscar</button>
+    </div>
+
+    <!-- Tabla de usuarios -->
+    <div class="table-wrap">
+      <div class="table-head">
+        <h4>Usuarios Registrados</h4>
+        <span style="font-size:.82rem; color:var(--dark-soft);">Total: 10 usuarios</span>
+      </div>
+      <table class="data-table" id="tablaUsuarios">
+        <thead>
+          <tr>
+            <th>RUT</th>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+            <th>Registro</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>12.345.678-9</td>
+            <td><strong>Carlos Muñoz R.</strong></td>
+            <td>Propietario</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="fa999b88969589ba9d979b9396d4999597">[email&#160;protected]</a></td>
+            <td>+56 9 8123 4567</td>
+            <td>10/03/2025</td>
+            <td><span class="status-badge status-active">Activo</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view" onclick="openModal('modalVerUsuario')">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="openModal('modalEditarUsuario')">Editar</button>
+              <button class="btn-tbl btn-del" onclick="darDeBaja(this)">Dar Baja</button>
+            </td>
+          </tr>
+          <tr>
+            <td>14.567.890-K</td>
+            <td><strong>Ana Soto L.</strong></td>
+            <td>Gestor Free</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="dcbdb2bdf2afb3a8b39cb4b3a8b1bdb5b0f2bfb3b1">[email&#160;protected]</a></td>
+            <td>+56 9 7654 3210</td>
+            <td>03/04/2025</td>
+            <td><span class="status-badge status-pending">Pendiente</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view" onclick="openModal('modalVerUsuario')">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="activarDesde(this)">Activar</button>
+              <button class="btn-tbl btn-del" onclick="darDeBaja(this)">Rechazar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>16.789.012-3</td>
+            <td><strong>Pedro Vargas M.</strong></td>
+            <td>Propietario</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6414120516030517241d050c0b0b4a070b09">[email&#160;protected]</a></td>
+            <td>+56 9 9876 5432</td>
+            <td>02/04/2025</td>
+            <td><span class="status-badge status-pending">Pendiente</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view" onclick="openModal('modalVerUsuario')">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="activarDesde(this)">Activar</button>
+              <button class="btn-tbl btn-del" onclick="darDeBaja(this)">Rechazar</button>
+            </td>
+          </tr>
+          <tr>
+            <td>18.901.234-5</td>
+            <td><strong>Laura Pérez G.</strong></td>
+            <td>Gestor Free</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="600c011512014e100720070d01090c4e030f0d">[email&#160;protected]</a></td>
+            <td>+56 9 6543 2109</td>
+            <td>15/02/2025</td>
+            <td><span class="status-badge status-active">Activo</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view" onclick="openModal('modalVerUsuario')">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="openModal('modalEditarUsuario')">Editar</button>
+              <button class="btn-tbl btn-del" onclick="darDeBaja(this)">Dar Baja</button>
+            </td>
+          </tr>
+          <tr>
+            <td>20.123.456-7</td>
+            <td><strong>Roberto Silva A.</strong></td>
+            <td>Propietario</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c3b1b0aaafb5a283a6aeb3b1a6b0a2eda0af">[email&#160;protected]</a></td>
+            <td>+56 9 5432 1098</td>
+            <td>28/01/2025</td>
+            <td><span class="status-badge status-inactive">Inactivo</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view" onclick="openModal('modalVerUsuario')">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="activarDesde(this)">Reactivar</button>
+              <button class="btn-tbl btn-del">Eliminar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>
+
+<!-- MODAL: Nuevo Usuario -->
+<div class="modal-overlay" id="modalNuevoUsuario">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modalNuevoUsuario')">✕</button>
+    <h3 style="font-size:1.6rem; margin-bottom:.3rem;">Nuevo Usuario</h3>
+    <p style="color:var(--dark-soft); font-size:.88rem; margin-bottom:1.5rem;">El Administrador puede crear directamente cuentas de Propietario o Gestor.</p>
+    <div class="form-grid">
+      <div class="field">
+        <label>Tipo de usuario *</label>
+        <select>
+          <option>Propietario</option>
+          <option>Gestor Free</option>
+          <option>Administrador</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Estado inicial</label>
+        <select>
+          <option>Activo</option>
+          <option>Pendiente</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>RUT *</label>
+        <input type="text" placeholder="12.345.678-9" />
+      </div>
+      <div class="field">
+        <label>Nombre Completo *</label>
+        <input type="text" placeholder="Nombre completo" />
+      </div>
+      <div class="field">
+        <label>Correo *</label>
+        <input type="email" placeholder="correo@ejemplo.cl" />
+      </div>
+      <div class="field">
+        <label>Teléfono *</label>
+        <input type="tel" placeholder="+56 9 ..." />
+      </div>
+      <div class="field">
+        <label>Fecha de Nacimiento *</label>
+        <input type="date" />
+      </div>
+      <div class="field">
+        <label>Sexo *</label>
+        <select>
+          <option>Masculino</option>
+          <option>Femenino</option>
+          <option>Prefiero no indicar</option>
+        </select>
+      </div>
+      <div class="field full">
+        <label>Contraseña temporal *</label>
+        <input type="password" placeholder="Contraseña inicial" />
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+      <button class="btn-action" onclick="closeModal('modalNuevoUsuario')">Crear Usuario</button>
+      <button class="btn-action secondary" onclick="closeModal('modalNuevoUsuario')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Ver Usuario -->
+<div class="modal-overlay" id="modalVerUsuario">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modalVerUsuario')">✕</button>
+    <div style="display:flex; align-items:center; gap:1.5rem; margin-bottom:1.5rem;">
+      <div style="width:64px;height:64px;border-radius:50%;background:var(--terracotta);display:flex;align-items:center;justify-content:center;font-size:1.5rem;color:white;flex-shrink:0;">CM</div>
+      <div>
+        <h3 style="font-size:1.5rem;">Carlos Muñoz Rojas</h3>
+        <p style="color:var(--dark-soft);">Propietario · <span class="status-badge status-active">Activo</span></p>
+      </div>
+    </div>
+    <div class="modal-features-grid">
+      <div class="modal-feat"><strong>RUT</strong>12.345.678-9</div>
+      <div class="modal-feat"><strong>Teléfono</strong>+56 9 8123 4567</div>
+      <div class="modal-feat"><strong>Correo</strong><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="264547544a495566414b474f4a0845494b">[email&#160;protected]</a></div>
+      <div class="modal-feat"><strong>Fecha Nac.</strong>15/06/1982</div>
+      <div class="modal-feat"><strong>Registro Bienes Raíces</strong>BR-2024-00123456</div>
+      <div class="modal-feat"><strong>Fecha Registro</strong>10/03/2025</div>
+    </div>
+    <div style="display:flex; gap:1rem; margin-top:1rem;">
+      <button class="btn-action" onclick="closeModal('modalVerUsuario')">Cerrar</button>
+      <button class="btn-action secondary" onclick="closeModal('modalVerUsuario')">Dar de Baja</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL: Editar Usuario -->
+<div class="modal-overlay" id="modalEditarUsuario">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal('modalEditarUsuario')">✕</button>
+    <h3 style="font-size:1.6rem; margin-bottom:1.5rem;">Editar Usuario</h3>
+    <div class="form-grid">
+      <div class="field">
+        <label>Nombre Completo</label>
+        <input type="text" value="Carlos Muñoz Rojas" />
+      </div>
+      <div class="field">
+        <label>Teléfono</label>
+        <input type="tel" value="+56 9 8123 4567" />
+      </div>
+      <div class="field">
+        <label>Correo</label>
+        <input type="email" value="carlos@gmail.com" />
+      </div>
+      <div class="field">
+        <label>Estado</label>
+        <select>
+          <option selected>Activo</option>
+          <option>Pendiente</option>
+          <option>Inactivo</option>
+        </select>
+      </div>
+    </div>
+    <div style="display:flex; gap:1rem; margin-top:1.5rem;">
+      <button class="btn-action" onclick="closeModal('modalEditarUsuario')">Guardar Cambios</button>
+      <button class="btn-action secondary" onclick="closeModal('modalEditarUsuario')">Cancelar</button>
+    </div>
+  </div>
+</div>
+
+<div id="toast" style="position:fixed;bottom:2rem;right:2rem;background:var(--dark);color:white;padding:.8rem 1.5rem;border-radius:8px;font-size:.88rem;display:none;z-index:9999;border-left:4px solid var(--terracotta);" id="toast2"></div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/main.js"></script>
+<script>
+function openModal(id) { document.getElementById(id).classList.add

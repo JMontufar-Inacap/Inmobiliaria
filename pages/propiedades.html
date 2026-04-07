@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNK – Propiedades</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><span class="logo-p">PNK</span><span class="logo-sub">Inmobiliaria</span></a>
+    <ul class="nav-links">
+      <li><a href="../index.html">Inicio</a></li>
+      <li><a href="propiedades.html" class="active">Propiedades</a></li>
+      <li><a href="login.html">Ingresar</a></li>
+      <li><a href="registro-propietario.html" class="btn-nav">Soy Propietario</a></li>
+      <li><a href="registro-gestor.html" class="btn-nav btn-nav-alt">Soy Gestor</a></li>
+    </ul>
+    <button class="hamburger" onclick="toggleMenu()">&#9776;</button>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="../index.html">Inicio</a>
+    <a href="propiedades.html">Propiedades</a>
+    <a href="login.html">Ingresar</a>
+    <a href="registro-propietario.html">Registrarme como Propietario</a>
+    <a href="registro-gestor.html">Registrarme como Gestor</a>
+  </div>
+</nav>
+
+<div class="props-page">
+  <div class="props-page-header">
+    <h2>Propiedades disponibles</h2>
+    <p style="color:var(--dark-soft);">Región de Coquimbo – Provincias Elqui, Limarí y Choapa</p>
+  </div>
+
+  <!-- Buscador -->
+  <div class="filter-bar">
+    <div style="display:flex;flex-direction:column;gap:.3rem;">
+      <label>Provincia</label>
+      <select id="fProvincia">
+        <option value="">Todas</option>
+        <option>Elqui</option>
+        <option>Limarí</option>
+        <option>Choapa</option>
+      </select>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem;">
+      <label>Comuna</label>
+      <select id="fComuna">
+        <option value="">Todas</option>
+        <option>La Serena</option>
+        <option>Coquimbo</option>
+        <option>Ovalle</option>
+        <option>Illapel</option>
+        <option>Salamanca</option>
+      </select>
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem;">
+      <label>Sector</label>
+      <input id="fSector" type="text" placeholder="Ej: El Milagro" style="min-width:140px;" />
+    </div>
+    <div style="display:flex;flex-direction:column;gap:.3rem;">
+      <label>Tipo</label>
+      <select id="fTipo">
+        <option value="">Todos</option>
+        <option>Casa</option>
+        <option>Departamento</option>
+        <option>Terreno</option>
+      </select>
+    </div>
+    <button class="btn-search" style="align-self:flex-end;">Buscar</button>
+  </div>
+
+  <!-- Grid de propiedades -->
+  <div class="props-grid" id="propsGrid">
+
+    <div class="prop-card">
+      <div class="pc-img pi1">
+        <span class="pc-badge">Casa</span>
+        <span class="pc-cod">Cód: C0125457</span>
+      </div>
+      <div class="pc-body">
+        <h4>Casa Sector El Milagro</h4>
+        <p class="pc-loc">📍 El Milagro, La Serena – Prov. Elqui</p>
+        <div class="pc-features">
+          <span>🛏 3 dorm.</span><span>🚿 2 baños</span><span>📐 120 m²</span><span>🅿 Estac.</span>
+        </div>
+        <div class="pc-footer">
+          <div><p class="pc-price">$154.000.000</p><p class="pc-uf">3.850 UF</p></div>
+          <button class="btn-ver" onclick="openPropModal('casa1')">Quiero saber más</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="pc-img pi2">
+        <span class="pc-badge">Departamento</span>
+        <span class="pc-cod">Cód: D0234891</span>
+      </div>
+      <div class="pc-body">
+        <h4>Depto Centro Coquimbo</h4>
+        <p class="pc-loc">📍 Centro, Coquimbo – Prov. Elqui</p>
+        <div class="pc-features">
+          <span>🛏 2 dorm.</span><span>🚿 1 baño</span><span>📐 68 m²</span><span>🏪 Bodega</span>
+        </div>
+        <div class="pc-footer">
+          <div><p class="pc-price">$112.000.000</p><p class="pc-uf">2.800 UF</p></div>
+          <button class="btn-ver" onclick="openPropModal('depto1')">Quiero saber más</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="pc-img pi3">
+        <span class="pc-badge">Terreno</span>
+        <span class="pc-cod">Cód: T0389012</span>
+      </div>
+      <div class="pc-body">
+        <h4>Terreno Ovalle Centro</h4>
+        <p class="pc-loc">📍 Centro, Ovalle – Prov. Limarí</p>
+        <div class="pc-features">
+          <span>📐 300 m²</span><span>🌳 Antejardín</span>
+        </div>
+        <div class="pc-footer">
+          <div><p class="pc-price">$38.000.000</p><p class="pc-uf">950 UF</p></div>
+          <button class="btn-ver" onclick="openPropModal('terreno1')">Quiero saber más</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="pc-img" style="background:linear-gradient(135deg,#5A4A3A,#3A2A2A);">
+        <span class="pc-badge">Casa</span>
+        <span class="pc-cod">Cód: C0456123</span>
+      </div>
+      <div class="pc-body">
+        <h4>Casa Illapel Centro</h4>
+        <p class="pc-loc">📍 Centro, Illapel – Prov. Choapa</p>
+        <div class="pc-features">
+          <span>🛏 4 dorm.</span><span>🚿 3 baños</span><span>📐 200 m²</span><span>🏊 Piscina</span>
+        </div>
+        <div class="pc-footer">
+          <div><p class="pc-price">$85.000.000</p><p class="pc-uf">2.125 UF</p></div>
+          <button class="btn-ver" onclick="openPropModal('casa2')">Quiero saber más</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="pc-img" style="background:linear-gradient(135deg,#3A5A7A,#1A3A5A);">
+        <span class="pc-badge">Departamento</span>
+        <span class="pc-cod">Cód: D0567234</span>
+      </div>
+      <div class="pc-body">
+        <h4>Depto La Herradura</h4>
+        <p class="pc-loc">📍 La Herradura, Coquimbo – Prov. Elqui</p>
+        <div class="pc-features">
+          <span>🛏 3 dorm.</span><span>🚿 2 baños</span><span>📐 90 m²</span>
+        </div>
+        <div class="pc-footer">
+          <div><p class="pc-price">$145.000.000</p><p class="pc-uf">3.625 UF</p></div>
+          <button class="btn-ver" onclick="openPropModal('depto2')">Quiero saber más</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="prop-card">
+      <div class="pc-img" style="background:linear-gradient(135deg,#4A5A3A,#2A3A2A);">
+        <span class="pc-badge">Terreno</span>
+        <span class="pc-cod">Cód: T0678345</span>
+      </div>
+      <div class="pc-body">
+        <h4>Terreno Punta de Choros</h4>
+        <p class="pc-loc">📍 Punta de Choros, La Higuera – Prov. Elqui</p>
+        <div class="pc-features">
+          <span>📐 500 m²</span>
+        </div>
+        <div class="pc-footer">
+          <div><p class="pc-price">$24.000.000</p><p class="pc-uf">600 UF</p></div>
+          <button class="btn-ver" onclick="openPropModal('terreno2')">Quiero saber más</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL detalle propiedad -->
+<div class="modal-overlay" id="propModal">
+  <div class="modal" style="max-width:700px;">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <span style="font-size:.75rem;color:var(--dark-soft);text-transform:uppercase;letter-spacing:.06em;" id="mCod">Cód: C0125457</span>
+    <h3 class="modal-title" id="mTitle">Casa Sector El Milagro</h3>
+    <p style="color:var(--dark-soft);font-size:.88rem;margin:.3rem 0 .5rem;" id="mLoc">📍 El Milagro, La Serena – Provincia Elqui</p>
+    <p class="modal-precio" id="mPrecio">$154.000.000 · 3.850 UF</p>
+    <p style="font-size:.75rem; color:var(--dark-soft); margin-bottom:1rem;" id="mFecha">📅 Publicada: 01/04/2025</p>
+
+    <div class="modal-photo-strip">
+      <div class="modal-photo mp1"></div>
+      <div class="modal-photo mp2"></div>
+      <div class="modal-photo mp3"></div>
+    </div>
+
+    <div class="modal-features-grid" id="mFeatures">
+      <div class="modal-feat"><strong>Dormitorios</strong><span id="mDorm">3</span></div>
+      <div class="modal-feat"><strong>Baños</strong><span id="mBanos">2</span></div>
+      <div class="modal-feat"><strong>Área Terreno</strong><span id="mTerr">250 m²</span></div>
+      <div class="modal-feat"><strong>Área Construida</strong><span id="mConst">120 m²</span></div>
+    </div>
+
+    <p style="font-size:.9rem; color:var(--dark-soft); margin-bottom:1rem;" id="mDesc">
+      Hermosa casa familiar ubicada en sector tranquilo El Milagro, La Serena. Amplio antejardín y patio trasero. Cocina completamente equipada.
+    </p>
+
+    <div class="modal-amenidades" id="mAmen">
+      <span class="amenidad yes">✅ Estacionamiento</span>
+      <span class="amenidad yes">✅ Cocina amoblada</span>
+      <span class="amenidad yes">✅ Antejardín</span>
+      <span class="amenidad yes">✅ Patio trasero</span>
+      <span class="amenidad">❌ Bodega</span>
+      <span class="amenidad">❌ Piscina</span>
+      <span class="amenidad">❌ Logia</span>
+    </div>
+
+    <div class="modal-map">🗺 Ubicación – Google Maps API (Región de Coquimbo)</div>
+
+    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1rem;">
+      <button class="btn-action">📅 Solicitar Visita</button>
+      <div class="modal-share">
+        <button class="share-btn share-wp">WhatsApp</button>
+        <button class="share-btn share-ig">Instagram</button>
+        <button class="share-btn share-fb">Facebook</button>
+        <button class="share-btn share-copy" onclick="copiarEnlace()">Copiar enlace</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <span class="logo-p">PNK</span><span class="logo-sub"> Inmobiliaria</span>
+      <p>La plataforma inmobiliaria de la Región de Coquimbo.</p>
+    </div>
+    <div class="footer-links">
+      <h5>Plataforma</h5>
+      <a href="propiedades.html">Ver Propiedades</a>
+      <a href="registro-propietario.html">Soy Propietario</a>
+      <a href="registro-gestor.html">Soy Gestor</a>
+    </div>
+    <div class="footer-links">
+      <h5>Admin</h5>
+      <a href="dashboard.html">Dashboard</a>
+      <a href="crud-usuarios.html">Usuarios</a>
+      <a href="crud-propiedades.html">Propiedades</a>
+    </div>
+    <div class="footer-contact">
+      <h5>Contacto</h5>
+      <p><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="8ae9e5e4feebe9fee5cafae4e1e3e4e7e5e8e3e6e3ebf8e3eba4e9e6">[email&#160;protected]</a></p>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 PNK Inmobiliaria.</p></div>
+</footer>
+
+<div id="copyToast" style="position:fixed;bottom:2rem;right:2rem;background:var(--dark);color:white;padding:.8rem 1.5rem;border-radius:8px;font-size:.88rem;display:none;z-index:9999;">📋 Enlace copiado</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="../js/main.js"></script>
+<script>
+const propData = {
+  casa1:    { cod:'Cód: C0125457', title:'Casa Sector El Milagro', loc:'📍 El Milagro, La Serena – Provincia Elqui', precio:'$154.000.000 · 3.850 UF', fecha:'01/04/2025', dorm:'3', banos:'2', terr:'250 m²', const:'120 m²', desc:'Hermosa casa familiar en sector tranquilo, El Milagro. Amplio antejardín y patio trasero. Cocina completamente equipada.' },
+  depto1:   { cod:'Cód: D0234891', title:'Depto Centro Coquimbo', loc:'📍 Centro, Coquimbo – Provincia Elqui', precio:'$112.000.000 · 2.800 UF', fecha:'15/03/2025', dorm:'2', banos:'1', terr:'–', const:'68 m²', desc:'Moderno departamento en el corazón de Coquimbo. Incluye bodega y acceso rápido a servicios.' },
+  terreno1: { cod:'Cód: T0389012', title:'Terreno Ovalle Centro', loc:'📍 Centro, Ovalle – Provincia Limarí', precio:'$38.000.000 · 950 UF', fecha:'20/03/2025', dorm:'–', banos:'–', terr:'300 m²', const:'–', desc:'Excelente terreno plano en pleno centro de Ovalle. Ideal para construcción de vivienda o inversión.' },
+  casa2:    { cod:'Cód: C0456123', title:'Casa Illapel Centro', loc:'📍 Centro, Illapel – Provincia Choapa', precio:'$85.000.000 · 2.125 UF', fecha:'10/02/2025', dorm:'4', banos:'3', terr:'600 m²', const:'200 m²', desc:'Gran casa con piscina, amplio living y comedor. Ideal para familia numerosa en Illapel.' },
+  depto2:   { cod:'Cód: D0567234', title:'Depto La Herradura', loc:'📍 La Herradura, Coquimbo – Provincia Elqui', precio:'$145.000.000 · 3.625 UF', fecha:'25/03/2025', dorm:'3', banos:'2', terr:'–', const:'90 m²', desc:'Departamento con vista al mar en La Herradura. A pasos de la playa.' },
+  terreno2: { cod:'Cód: T0678345', title:'Terreno Punta de Choros', loc:'📍 Punta de Choros – Provincia Elqui', precio:'$24.000.000 · 600 UF', fecha:'28/03/2025', dorm:'–', banos:'–', terr:'500 m²', const:'–', desc:'Terreno único en zona de reserva natural. Ideal para casa de campo o ecoturismo.' },
+};
+
+function openPropModal(key) {
+  const d = propData[key];
+  document.getElementById('mCod').textContent = d.cod;
+  document.getElementById('mTitle').textContent = d.title;
+  document.getElementById('mLoc').textContent = d.loc;
+  document.getElementById('mPrecio').textContent = d.precio;
+  document.getElementById('mFecha').textContent = '📅 Publicada: ' + d.fecha;
+  document.getElementById('mDorm').textContent = d.dorm;
+  document.getElementById('mBanos').textContent = d.banos;
+  document.getElementById('mTerr').textContent = d.terr;
+  document.getElementById('mConst').textContent = d.const;
+  document.getElementById('mDesc').textContent = d.desc;
+  document.getElementById('propModal').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('propModal').classList.rem

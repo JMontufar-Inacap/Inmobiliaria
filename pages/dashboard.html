@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PNK – Dashboard Administrador</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="nav-inner">
+    <a href="../index.html" class="logo"><span class="logo-p">PNK</span><span class="logo-sub">Inmobiliaria</span></a>
+    <ul class="nav-links">
+      <li><a href="dashboard.html" class="active">Dashboard</a></li>
+      <li><a href="crud-usuarios.html">Usuarios</a></li>
+      <li><a href="crud-propiedades.html">Propiedades</a></li>
+      <li><a href="../index.html">Ver Sitio</a></li>
+      <li><a href="login.html" class="btn-nav btn-nav-alt">Cerrar sesión</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="dash-layout">
+
+  <!-- SIDEBAR -->
+  <aside class="dash-sidebar">
+    <div class="dash-sidebar-header">
+      <p class="dash-user-name">Admin Principal</p>
+      <span class="dash-user-role">Administrador</span>
+    </div>
+    <nav class="dash-nav">
+      <span class="dash-nav-section">Principal</span>
+      <a href="dashboard.html" class="active"><span class="nav-icon">📊</span> Dashboard</a>
+      <a href="propiedades.html"><span class="nav-icon">🏘</span> Ver Propiedades</a>
+
+      <span class="dash-nav-section">Gestión</span>
+      <a href="crud-usuarios.html"><span class="nav-icon">👥</span> Usuarios</a>
+      <a href="crud-propiedades.html"><span class="nav-icon">🏠</span> Propiedades</a>
+
+      <span class="dash-nav-section">Publicaciones</span>
+      <a href="crud-propiedades.html#pending"><span class="nav-icon">⏳</span> Pendientes de Revisión</a>
+      <a href="crud-propiedades.html"><span class="nav-icon">✅</span> Publicadas</a>
+    </nav>
+    <div class="dash-logout">
+      <a href="login.html">🚪 Cerrar sesión</a>
+    </div>
+  </aside>
+
+  <!-- MAIN -->
+  <main class="dash-main">
+    <div class="dash-topbar">
+      <div>
+        <h2>Dashboard</h2>
+        <p style="color:var(--dark-soft); font-size:.88rem;">Plataforma PNK Inmobiliaria – Región de Coquimbo</p>
+      </div>
+      <div class="dash-topbar-actions">
+        <a href="crud-usuarios.html" class="btn-action secondary">+ Nuevo Usuario</a>
+        <a href="crud-propiedades.html" class="btn-action">+ Nueva Propiedad</a>
+      </div>
+    </div>
+
+    <!-- KPIs -->
+    <div class="kpi-row">
+      <div class="kpi-card highlight">
+        <span class="kpi-icon">🏠</span>
+        <span class="kpi-label">Propiedades Activas</span>
+        <span class="kpi-val">342</span>
+        <span class="kpi-sub">+12 este mes</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-icon">👤</span>
+        <span class="kpi-label">Propietarios</span>
+        <span class="kpi-val">128</span>
+        <span class="kpi-sub">8 pendientes de activar</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-icon">💼</span>
+        <span class="kpi-label">Gestores Activos</span>
+        <span class="kpi-val">97</span>
+        <span class="kpi-sub">5 postulaciones nuevas</span>
+      </div>
+      <div class="kpi-card">
+        <span class="kpi-icon">🤝</span>
+        <span class="kpi-label">Negocios Cerrados</span>
+        <span class="kpi-val">83</span>
+        <span class="kpi-sub">Mes actual: 7</span>
+      </div>
+    </div>
+
+    <!-- Tabla Usuarios Pendientes -->
+    <div class="table-wrap">
+      <div class="table-head">
+        <h4>Cuentas Pendientes de Activación</h4>
+        <a href="crud-usuarios.html" class="btn-action secondary" style="font-size:.82rem; padding:.45rem 1rem;">Ver todos</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Tipo</th>
+            <th>Correo</th>
+            <th>Fecha Registro</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Carlos Muñoz R.</strong></td>
+            <td>Propietario</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f4979586989b87b49399959d98da979b99">[email&#160;protected]</a></td>
+            <td>04/04/2025</td>
+            <td><span class="status-badge status-pending">Pendiente</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="activarUser(this)">Activar</button>
+              <button class="btn-tbl btn-del">Rechazar</button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Ana Soto L.</strong></td>
+            <td>Gestor Free</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4f2e212e613c203b200f27203b222e2623612c2022">[email&#160;protected]</a></td>
+            <td>03/04/2025</td>
+            <td><span class="status-badge status-pending">Pendiente</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="activarUser(this)">Activar</button>
+              <button class="btn-tbl btn-del">Rechazar</button>
+            </td>
+          </tr>
+          <tr>
+            <td><strong>Pedro Vargas M.</strong></td>
+            <td>Propietario</td>
+            <td><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="5323253221343220132a323b3c3c7d303c3e">[email&#160;protected]</a></td>
+            <td>02/04/2025</td>
+            <td><span class="status-badge status-pending">Pendiente</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view">Ver</button>
+              <button class="btn-tbl btn-edit" onclick="activarUser(this)">Activar</button>
+              <button class="btn-tbl btn-del">Rechazar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Tabla Propiedades recientes -->
+    <div class="table-wrap">
+      <div class="table-head">
+        <h4>Propiedades Publicadas Recientemente</h4>
+        <a href="crud-propiedades.html" class="btn-action secondary" style="font-size:.82rem; padding:.45rem 1rem;">Administrar</a>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th>Código</th>
+            <th>Tipo</th>
+            <th>Ubicación</th>
+            <th>Precio</th>
+            <th>Publicada por</th>
+            <th>Estado</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><code>C0125457</code></td>
+            <td>Casa</td>
+            <td>El Milagro, La Serena</td>
+            <td>$154.000.000</td>
+            <td>Propietario</td>
+            <td><span class="status-badge status-active">Activa</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view">Ver</button>
+              <button class="btn-tbl btn-edit">Editar</button>
+              <button class="btn-tbl btn-del">Baja</button>
+            </td>
+          </tr>
+          <tr>
+            <td><code>D0234891</code></td>
+            <td>Depto</td>
+            <td>Centro, Coquimbo</td>
+            <td>$112.000.000</td>
+            <td>Admin</td>
+            <td><span class="status-badge status-active">Activa</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view">Ver</button>
+              <button class="btn-tbl btn-edit">Editar</button>
+              <button class="btn-tbl btn-del">Baja</button>
+            </td>
+          </tr>
+          <tr>
+            <td><code>T0389012</code></td>
+            <td>Terreno</td>
+            <td>Ovalle Centro</td>
+            <td>$38.000.000</td>
+            <td>Gestor Free</td>
+            <td><span class="status-badge status-pending">Revisión</span></td>
+            <td class="tbl-actions">
+              <button class="btn-tbl btn-view">Ver</button>
+              <button class="btn-tbl btn-edit">Aprobar</button>
+              <button class="btn-tbl btn-del">Rechazar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div id="toast" style="position:fixed;bottom:2rem;right:2rem;background:var(--dark);color:white;padding:.8rem 1.5rem;border-radius:8px;font-size:.88rem;display:none;z-index:9999;border-left:4px solid var(--terracotta);">
+  ✅ Usuario activado correctamente
+</div>
+
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></scri
