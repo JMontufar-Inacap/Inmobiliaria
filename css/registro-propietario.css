@@ -1,0 +1,43 @@
+.page-form {
+  background: 
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url('../img/Lobby.jpg') no-repeat center center;
+  background-size: cover;
+  min-height: 100vh;
+}
+
+.sec-tag {
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.checkbox-label {
+  font-size: .88rem;
+  text-transform: none;
+}
+
+.checkbox-label input {
+  accent-color: var(--terracotta);
+  width: 16px;
+  height: 16px;
+  margin-right: .4rem;
+}
+
+.modal {
+  text-align: center;
+  max-width: 440px;
+}
+
+.modal .emoji {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.modal h3 {
+  font-size: 1.8rem;
+  margin-bottom: .5rem;
+}
+
+.modal p {
+  color: var(--dark-soft);
+}
